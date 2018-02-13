@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script>
+
+//ticketmaster API
+    $.ajax({
+            url: "https://app.ticketmaster.com/discovery/v2/events",
+            dataType: "json",
+            method: "GET",
+            data: {
+                apikey: "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0",
+                format: "json"
+            }
+        }).then(function(res){
+                console.log(res)
+            });
+        
+//spotify API
+    let headers = {};
+
+        $.ajax({
+            url: "http://proxy.hackeryou.com",
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data: JSON.stringify({
+                reqUrl: 'https://accounts.spotify.com/api/token',
+                params: {
+                    grant_type: 'client_credentials'
+                },
+                proxyHeaders: {
+                    "Authorization": "Basic YzExYWIyNTAxYjA0NDg2YjhlN2M2MzJjYmIxM2M1NjQ6ODBkZDZkZWUwYWMyNGZiNzk2YTc3MDcwYWY3NmMxMjY="
+                }
+            })
+        }).then(function (res) {
+            // console.log(res);
+            headers = {
+                "Authorization": res.token_type + " " + res.access_token
+            }
+
+
+
+            let url = "https://api.spotify.com/v1/";
+
+
+            $.ajax({
+                url: url + "search",
+                method: "GET",
+                headers: headers,
+                dataType: "json",
+                data: {
+                    type: "artist",
+                    q: "Drake"
+                }
+            }).then(function (res) {
+                console.log(res);
+            });
+
+
+        });
+    
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
