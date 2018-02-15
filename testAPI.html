@@ -7,74 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-    <script>
+    <div class="wrapper">
+        <form action="">
+            <label for="userLocation">Location</label>
+            <input type="text" class="userLocation">
 
-//ticketmaster API
-    $.ajax({
-            url: "https://app.ticketmaster.com/discovery/v2/events",
-            dataType: "json",
-            method: "GET",
-            data: {
-                apikey: "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0",
-                format: "json"
-            }
-        }).then(function(res){
-                console.log(res)
-            });
-        
-//spotify API
-    let headers = {};
+            <input type="date" class="userStartDate">
 
-        $.ajax({
-            url: "http://proxy.hackeryou.com",
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            data: JSON.stringify({
-                reqUrl: 'https://accounts.spotify.com/api/token',
-                params: {
-                    grant_type: 'client_credentials'
-                },
-                proxyHeaders: {
-                    "Authorization": "Basic YzExYWIyNTAxYjA0NDg2YjhlN2M2MzJjYmIxM2M1NjQ6ODBkZDZkZWUwYWMyNGZiNzk2YTc3MDcwYWY3NmMxMjY="
-                }
-            })
-        }).then(function (res) {
-            // console.log(res);
-            headers = {
-                "Authorization": res.token_type + " " + res.access_token
-            }
-
-
-
-            let url = "https://api.spotify.com/v1/";
-
-
-            $.ajax({
-                url: url + "search",
-                method: "GET",
-                headers: headers,
-                dataType: "json",
-                data: {
-                    type: "artist",
-                    q: "Drake"
-                }
-            }).then(function (res) {
-                console.log(res);
-            });
-
-
-        });
+            <input type="date" class="userEndDate">
     
+            
+            <button>Submit</button>
+        </form>
+    </div>
 
-
-
-
-
-        
-    </script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
