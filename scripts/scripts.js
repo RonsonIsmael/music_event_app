@@ -44,10 +44,7 @@ myApp.getEventInfo = function(res) {
                         }
                     })
                 console.log(eventInfo);
-                myApp.setupSpotify(eventInfo)
-                // myApp.getArtistID(eventInfo);
-
-            
+                myApp.setupSpotify(eventInfo);        
 }
 
 // //spotify API
@@ -106,17 +103,43 @@ myApp.getArtistID = function(eventInfo) {
 
             $.when(...responses) 
                 .then((...args) => {
-                    
-                   args = args.map(arg => arg[0].artists.items);
-                   args.filter(item => item.length > 0);
                     console.log(args);
-                        
+                   args = args.map(arg => arg[0].artists.items);
+                   args = args.filter(item => item.length > 0);
+                   artistID = args.map(arg => arg[0].id);
+                //    console.log(args);   
+                    myApp.getArtistTracks(artistID);
                 })
 }
 
 
+myApp.getArtistTracks = function(id) {
 
-   
+    // const getTracks = function(id) {
+        let url = `https://api.spotify.com/v1/artists/${id}/top-tracks`;
+       $.ajax({
+           url: url,
+           method: "GET",
+           headers: headers,
+           dataType: "json",
+        }).then (res => console.log(res))
+        // const responses = [];
+        // eventInfo.forEach(function(item){
+        //     responses.push(getTracks(item));
+        // });
+    
+        // $.when(...responses) 
+        //     .then((...args) => {
+        //         console.log(args);
+        //     //    args = args.map(arg => arg[0].artists.items);
+        //     //    args = args.filter(item => item.length > 0);
+        //     //    artistID = args.map(arg => arg[0].id);
+        //     //    console.log(args);     
+        //     })
+    // }
+
+}
+ 
              
         //        let url = "https://api.spotify.com/v1/";
         //        $.ajax({
@@ -148,12 +171,6 @@ myApp.getArtistID = function(eventInfo) {
 
 
 // });
-
-
-
-
-    
-
 
 
 myApp.formSubmit = function() {
