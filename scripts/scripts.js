@@ -103,26 +103,61 @@ myApp.getArtistID = function(eventInfo) {
 
             $.when(...responses) 
                 .then((...args) => {
+                    //args is the artist information
                     console.log(args);
                    args = args.map(arg => arg[0].artists.items);
                    args = args.filter(item => item.length > 0);
                    artistID = args.map(arg => arg[0].id);
-                //    console.log(args);   
+                   //this args represents the artist id
+                   console.log(args);   
                     myApp.getArtistTracks(artistID);
                 })
 }
 
 
+//using arists's id, we look for the top tracks
 myApp.getArtistTracks = function(id) {
 
-    // const getTracks = function(id) {
-        let url = `https://api.spotify.com/v1/artists/${id}/top-tracks`;
-       $.ajax({
-           url: url,
-           method: "GET",
-           headers: headers,
-           dataType: "json",
-        }).then (res => console.log(res))
+    //function to be used to run url from id to get sets of top tracks per artist
+    const getTracks = function(url) {
+        return $.ajax({
+            url: url,
+            method: "GET",
+            headers: headers,
+            dataType: "json"
+        })
+    }
+    
+    // console.log(id);
+    //empty array that we will stuff the tracks into
+    const topTracks = [];
+    //per artist id, we will run the function get tracks
+    id.forEach((item) => {
+        let url = `https://api.spotify.com/v1/artists/${item}/top-tracks?country=CA`;
+        console.log(url);
+        //pushes each set of tracks into topTracks
+        topTracks.push(getTracks(url));
+    })
+
+    console.log(topTracks);
+
+    //whait all items of topTracks to be done done loading, 
+    $.when(...topTracks)
+        //then takes all of the resolved tracks and stores them as arguements
+        .then((...args) => {
+            console.log(args);
+            args = args.map((tracks) => {
+                return tracks[0].tracks;
+            })
+            console.log(args);
+            args = args.map((tracks) => {
+                return tracks.map((item) => {
+                    return item.uri;
+                })
+            })
+            console.log(args);
+        })
+
         // const responses = [];
         // eventInfo.forEach(function(item){
         //     responses.push(getTracks(item));
@@ -137,7 +172,6 @@ myApp.getArtistTracks = function(id) {
         //     //    console.log(args);     
         //     })
     // }
-
 }
  
              
