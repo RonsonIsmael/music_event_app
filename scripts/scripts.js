@@ -223,11 +223,13 @@ myApp.getArtistTracks = function(id, eventInfo, artistImage) {
 myApp.displayOnScreen = function(tracks, artistInfo, artistImage) {
     // console.log("display on te screen");
     // console.log(artistImage);
-    //adding the tracks array to the object
+    
     artistInfo.forEach(function(item){
+        //adding the image url to the object
         artistImage.forEach(function(image){
             item.image = image;
         });
+        //adding the tracks array to the object
         tracks.forEach(function(track){
             item.trackList = track.responseJSON.tracks
         });
