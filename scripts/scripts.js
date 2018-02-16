@@ -109,9 +109,15 @@ myApp.getArtistID = function(eventInfo) {
                    args = args.map(arg => arg[0].artists.items);
                    args = args.filter(item => item.length > 0);
                    artistID = args.map(arg => arg[0].id);
+                   artistImage = args.map(arg => arg[0].images[0]);
+                   artistImage = artistImage.filter(function(item){
+                       return item !== undefined;
+                   })
+                    .map(item => item.url)
+                   
                    //this args represents the artist id
-                //    console.log(args);   
-                    myApp.getArtistTracks(artistID, eventInfo);
+                //    console.log(artistImage);   
+                    myApp.getArtistTracks(artistID, eventInfo, artistImage);
                 })
 }
 
@@ -119,7 +125,8 @@ myApp.getArtistID = function(eventInfo) {
 
 
 //using arists's id, we look for the top tracks
-myApp.getArtistTracks = function(id, eventInfo) {
+myApp.getArtistTracks = function(id, eventInfo, artistImage) {
+    // console.log(artistImage);
 
     //function to be used to run url from id to get sets of top tracks per artist
     const getTracks = function(url) {
@@ -159,7 +166,7 @@ myApp.getArtistTracks = function(id, eventInfo) {
                 })
             })
             // console.log(args);
-            myApp.displayOnScreen(topTracks, eventInfo);
+            myApp.displayOnScreen(topTracks, eventInfo, artistImage);
         })
 
        
@@ -213,10 +220,14 @@ myApp.getArtistTracks = function(id, eventInfo) {
 // });
 
 //displays information on screen
-myApp.displayOnScreen = function(tracks, artistInfo) {
-    
+myApp.displayOnScreen = function(tracks, artistInfo, artistImage) {
+    // console.log("display on te screen");
+    // console.log(artistImage);
     //adding the tracks array to the object
     artistInfo.forEach(function(item){
+        artistImage.forEach(function(image){
+            item.image = image;
+        });
         tracks.forEach(function(track){
             item.trackList = track.responseJSON.tracks
         });
