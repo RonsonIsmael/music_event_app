@@ -6,7 +6,7 @@ const myApp = {};
 //takes userlocation and user date from form submission to submit to ticketgmaster
 //looks for events in ticketmaster based on location and date
 myApp.getTicketMasterEvents = (userLocation, userStartDate, userEndDate) => {
-    console.log("were in ticketMaster");
+    // console.log("were in ticketMaster");
     //ticketmaster API
         $.ajax({
             url: "https://app.ticketmaster.com/discovery/v2/events",
@@ -29,9 +29,9 @@ myApp.getTicketMasterEvents = (userLocation, userStartDate, userEndDate) => {
 myApp.getEventInfo = function(res) {
                 const events = res._embedded.events;
 
-                console.log(events);
+                // console.log(events);
 
-                console.log(events[0].name)
+                // console.log(events[0].name)
 
                 let eventInfo = events
                     .filter(item => item._embedded.attractions !== undefined)
@@ -43,8 +43,9 @@ myApp.getEventInfo = function(res) {
                             venue: item._embedded.venues[0].name
                         }
                     })
-                console.log(eventInfo);
-                myApp.setupSpotify(eventInfo);        
+                // console.log(eventInfo);
+                myApp.setupSpotify(eventInfo);  
+
 }
 
 // //spotify API
@@ -79,7 +80,7 @@ myApp.setupSpotify = function(eventInfo) {
 
 myApp.getArtistID = function(eventInfo) {
 
-            console.log(eventInfo);
+            // console.log(eventInfo);
 
             const getResponses = function(artist) {
                 let url = "https://api.spotify.com/v1/";
@@ -104,19 +105,28 @@ myApp.getArtistID = function(eventInfo) {
             $.when(...responses) 
                 .then((...args) => {
                     //args is the artist information
-                    console.log(args);
+                    // console.log(args);
                    args = args.map(arg => arg[0].artists.items);
                    args = args.filter(item => item.length > 0);
                    artistID = args.map(arg => arg[0].id);
+                   artistImage = args.map(arg => arg[0].images[0]);
+                   artistImage = artistImage.filter(function(item){
+                       return item !== undefined;
+                   })
+                    .map(item => item.url)
+                   
                    //this args represents the artist id
-                   console.log(args);   
-                    myApp.getArtistTracks(artistID);
+                //    console.log(artistImage);   
+                    myApp.getArtistTracks(artistID, eventInfo, artistImage);
                 })
 }
 
 
+
+
 //using arists's id, we look for the top tracks
-myApp.getArtistTracks = function(id) {
+myApp.getArtistTracks = function(id, eventInfo, artistImage) {
+    // console.log(artistImage);
 
     //function to be used to run url from id to get sets of top tracks per artist
     const getTracks = function(url) {
@@ -134,29 +144,32 @@ myApp.getArtistTracks = function(id) {
     //per artist id, we will run the function get tracks
     id.forEach((item) => {
         let url = `https://api.spotify.com/v1/artists/${item}/top-tracks?country=CA`;
-        console.log(url);
+        // console.log(url);
         //pushes each set of tracks into topTracks
         topTracks.push(getTracks(url));
     })
 
-    console.log(topTracks);
+    // console.log(topTracks);
 
     //whait all items of topTracks to be done done loading, 
     $.when(...topTracks)
         //then takes all of the resolved tracks and stores them as arguements
         .then((...args) => {
-            console.log(args);
+            // console.log(args);
             args = args.map((tracks) => {
                 return tracks[0].tracks;
             })
-            console.log(args);
+            // console.log(args);
             args = args.map((tracks) => {
                 return tracks.map((item) => {
                     return item.uri;
                 })
             })
-            console.log(args);
+            // console.log(args);
+            myApp.displayOnScreen(topTracks, eventInfo, artistImage);
         })
+
+       
 
         // const responses = [];
         // eventInfo.forEach(function(item){
@@ -206,18 +219,37 @@ myApp.getArtistTracks = function(id) {
 
 // });
 
+//displays information on screen
+myApp.displayOnScreen = function(tracks, artistInfo, artistImage) {
+    // console.log("display on te screen");
+    // console.log(artistImage);
+    
+    artistInfo.forEach(function(item){
+        //adding the image url to the object
+        artistImage.forEach(function(image){
+            item.image = image;
+        });
+        //adding the tracks array to the object
+        tracks.forEach(function(track){
+            item.trackList = track.responseJSON.tracks
+        });
+    });
+    console.log(artistInfo);
+
+}
+
 
 myApp.formSubmit = function() {
     $("form").on("submit", function(e){
         e.preventDefault();
         let userLocation = $("input[type=text]").val();
-        console.log(userLocation);
+        // console.log(userLocation);
 
         let userStartDate = $(".userStartDate").val();
-        console.log(userStartDate);
+        // console.log(userStartDate);
 
         let userEndDate = $(".userEndDate").val();
-        console.log(userEndDate);
+        // console.log(userEndDate);
 
         myApp.getTicketMasterEvents(userLocation, userStartDate, userEndDate);
 
