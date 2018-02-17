@@ -9,33 +9,36 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="wrapper">
-        <form action="">
-            <label for="userLocation">Location</label>
-            <input type="text" class="userLocation">
-
-            <input type="date" class="userStartDate">
-
-            <input type="date" class="userEndDate">
-    
+    <div class="startPage">
+        <div class="wrapper">
             
-            <button>Submit</button>
-
-            <!-- <iframe src="https://open.spotify.com/embed?uri=spotify:artist:6fVcDUckTwxqg56qNsEvUr"
-        frameborder="0" allowtransparency="true"></iframe> -->
-
-        <!-- <iframe id=“main-artist-2” class=“tracks” src=“https://open.spotify.com/embed?uri=spotify:artist:3TVXtAsR1Inumwj472S9r4&amp;theme=white” width=“200" height=“300” frameborder=“0" allowtransparency=“true” ></iframe> -->
-
-        <!-- <iframe src=”https://embed.spotify.com/?uri=spotify%3Aalbum%3A2DCzgO12HyMeGxoQlbtvQV&view=coverart” width=”300″ height=”380″ frameborder=”0″ allowtransparency=”true”></iframe> -->
-
-        <iframe class="tracks" src="https://open.spotify.com/embed?uri=spotify:artist:0c173mlxpT3dSFRgMO8XPh&amp;theme=white" width="100" height="300" frameborder="0" allowtransparency="true"></iframe>
-
-
+            <header>
+                <h1>Did you hear?</h1>
+    
+                <blockquote>Plan on going out to a show tonight?</blockquote>
+                
+                <form action="">
+                    <div class="input-container">
+                        <label for="userLocation">Location</label>
+                        <input type="text" class="userLocation" placeholder="Location">
+                        <label for="userStartDate">Enter End Date</label>
+                        <input type="date" class="userStartDate" name="userStartDate">
+                        <label for="userEndDate">Enter End Date</label>
+                        <input type="date" class="userEndDate" name="userEndDate">
+                    </div>
+            
+                    
+                    <button>Submit</button>
+        
+        
+                </form>
+            </header>
             <div class="masterContainer">
                 
-
+    
             </div>
-        </form>
+        </div>
+        
     </div>
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
