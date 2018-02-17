@@ -29,7 +29,7 @@ myApp.getTicketMasterEvents = (userLocation, userStartDate, userEndDate) => {
 myApp.getEventInfo = function(res) {
                 const events = res._embedded.events;
 
-                // console.log(events);
+                console.log(events);
 
                 // console.log(events[0].name)
 
@@ -40,7 +40,8 @@ myApp.getEventInfo = function(res) {
                             name: item._embedded.attractions[0].name,
                             startDate: item.dates.start.localDate,
                             url: item.url,
-                            venue: item._embedded.venues[0].name
+                            venue: item._embedded.venues[0].name,
+                            image: item.images[0].url
                         }
                     })
                 // console.log(eventInfo);
@@ -105,19 +106,13 @@ myApp.getArtistID = function(eventInfo) {
             $.when(...responses) 
                 .then((...args) => {
                     //args is the artist information
-                    // console.log(args);
-                   args = args.map(arg => arg[0].artists.items);
-                   args = args.filter(item => item.length > 0);
+                    args = args.map(arg => arg[0].artists.items);
+                    args = args.filter(item => item.length > 0);
+                    console.log(args);
                    artistID = args.map(arg => arg[0].id);
-                   artistImage = args.map(arg => arg[0].images[0]);
-                   artistImage = artistImage.filter(function(item){
-                       return item !== undefined;
-                   })
-                    .map(item => item.url)
                    
                    //this args represents the artist id
-                //    console.log(artistImage);   
-                    myApp.getArtistTracks(artistID, eventInfo, artistImage);
+                    myApp.getArtistTracks(artistID, eventInfo);
                 })
 }
 
@@ -125,7 +120,7 @@ myApp.getArtistID = function(eventInfo) {
 
 
 //using arists's id, we look for the top tracks
-myApp.getArtistTracks = function(id, eventInfo, artistImage) {
+myApp.getArtistTracks = function(id, eventInfo) {
     // console.log(artistImage);
 
     //function to be used to run url from id to get sets of top tracks per artist
@@ -166,7 +161,7 @@ myApp.getArtistTracks = function(id, eventInfo, artistImage) {
                 })
             })
             // console.log(args);
-            myApp.displayOnScreen(topTracks, eventInfo, artistImage);
+            myApp.displayOnScreen(topTracks, eventInfo);
         })
 
        
@@ -220,21 +215,57 @@ myApp.getArtistTracks = function(id, eventInfo, artistImage) {
 // });
 
 //displays information on screen
-myApp.displayOnScreen = function(tracks, artistInfo, artistImage) {
+myApp.displayOnScreen = function(topTracks, artistInfo) {
     // console.log("display on te screen");
     // console.log(artistImage);
-    
-    artistInfo.forEach(function(item){
-        //adding the image url to the object
-        artistImage.forEach(function(image){
-            item.image = image;
-        });
+    let onlyTracks = topTracks.map((item) => {
+        return item.responseJSON.tracks;
+    })
+
+    console.log(onlyTracks);
+
+    let finalInfo = artistInfo.map((item,i) => {
+        return {
+            artist: item,
+            tracks: onlyTracks[i]
+            // artistTracks: tracks[i].responseJSON.tracks
+        }
+    })
+
+    console.log(finalInfo);
         //adding the tracks array to the object
-        tracks.forEach(function(track){
-            item.trackList = track.responseJSON.tracks
-        });
-    });
-    console.log(artistInfo);
+        // tracks.forEach(function(track){
+        //     item.trackList = track.responseJSON.tracks
+        // });
+    console.log(finalInfo);
+    finalInfo = finalInfo.filter((item) => {
+        return item.tracks.length > 0 && item.tracks !== undefined;
+    })
+
+    console.log(finalInfo);
+
+    finalInfo.forEach((item) => {
+        $(".masterContainer").append(`<div class='container'></div>`)
+        $(".container").append(`<h2>${item.artist.name}</h2>`);
+        $(".container").append(`<img src="${item.artist.image}" alt="picture of ${item.name}">`);
+        console.log(item);
+
+        console.log(item.tracks[0]);
+
+
+        // item.tracks.forEach((track) => {
+        //     // console.log(track.artists[0].uri);
+        //     const playlist = track.artists[0].uri;
+        //     console.log(playlist);
+        //     // const iframe = `<iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="250" height="300" frameborder="0" allowtransparency="true"></iframe>`;
+
+        //     // $(".container").append(iframe);
+
+        // })
+
+
+    })
+
 
 }
 
