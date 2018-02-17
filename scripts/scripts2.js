@@ -106,13 +106,23 @@ myApp.getArtistID = function(eventInfo) {
             $.when(...responses) 
                 .then((...args) => {
                     //args is the artist information
+                    console.log(args);
+                    console.log(eventInfo);
                     args = args.map(arg => arg[0].artists.items);
                     args = args.filter(item => item.length > 0);
-                    console.log(args);
                    artistID = args.map(arg => arg[0].id);
+                   artistSpotify = args.map((arg) => {
+                       return {
+                        artistURI: arg[0].uri,
+                        artistImage: arg[0].images
+                       }       
+                    });
+
+                //    console.log(artistID)
+                   console.log(artistSpotify)
                    
                    //this args represents the artist id
-                    myApp.getArtistTracks(artistID, eventInfo);
+                    myApp.displayOnScreen(artistSpotify, eventInfo);
                 })
 }
 
@@ -120,7 +130,7 @@ myApp.getArtistID = function(eventInfo) {
 
 
 //using arists's id, we look for the top tracks
-myApp.getArtistTracks = function(id, eventInfo) {
+myApp.getArtistTracks = function(artistSpotify, eventInfo) {
     // console.log(artistImage);
 
     //function to be used to run url from id to get sets of top tracks per artist
@@ -215,24 +225,32 @@ myApp.getArtistTracks = function(id, eventInfo) {
 // });
 
 //displays information on screen
-myApp.displayOnScreen = function(topTracks, artistInfo) {
+myApp.displayOnScreen = function(artistSpotify, artistInfo) {
     // console.log("display on te screen");
-    // console.log(artistImage);
-    let onlyTracks = topTracks.map((item) => {
-        return item.responseJSON.tracks;
-    })
+    console.log(artistSpotify);
+    console.log(artistInfo)
+    // let onlyTracks = topTracks.map((item) => {
+    //     return item.responseJSON.tracks;
+    // })
 
-    console.log(onlyTracks);
+    // console.log(onlyTracks);
 
-    let finalInfo = artistInfo.map((item,i) => {
+    // let finalInfo = artistInfo.map((item,i) => {
+    //     return {
+    //         artist: item,
+    //         tracks: onlyTracks[i]
+    //         // artistTracks: tracks[i].responseJSON.tracks
+    //     }
+    // })
+
+    let finalInfo2 = artistInfo.map((item, i) => {
         return {
             artist: item,
-            tracks: onlyTracks[i]
-            // artistTracks: tracks[i].responseJSON.tracks
+            spotify: artistSpotify[i]
         }
     })
 
-    console.log(finalInfo);
+    console.log(finalInfo2);
         //adding the tracks array to the object
         // tracks.forEach(function(track){
         //     item.trackList = track.responseJSON.tracks
