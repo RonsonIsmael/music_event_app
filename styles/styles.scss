@@ -1,8 +1,96 @@
-.wrapper {
-    max-width: 800px;
-    width: 75%;
-    margin: 0 auto;
-    background-color: lightgrey;
-    opacity: 0.5;
-    height: 100vh;
+$primary : rgb(154, 251, 197);
+$accent: #703DC7;
+$font-color: white;
+
+$pfont: 'Yeseva One', cursive;
+$sfont: 'Roboto', sans-serif;
+
+@import "partials/setup";
+
+@mixin font-size ($size){
+    font-size: $size;
+    color: $font-color;
 }
+
+@mixin headers () {
+    font-family: $pfont;
+}
+
+@mixin content () {
+    font-family: $sfont;
+}
+
+
+h1{
+    @include font-size(1.8rem);
+    @include headers();
+}
+
+h2 {
+    @include font-size(2rem);
+    @include headers();
+
+}
+
+h3 {
+    @include font-size(1.8rem);
+    @include content();
+
+}
+
+p {
+    @include font-size(1.6rem);
+    @include content();
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    max-width: 1100px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: $primary;
+    // height: 100vh;
+}
+
+img {
+    width: 200px;
+    height: 200px; 
+    border-radius: 150px;
+}
+
+.imgHolder {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.masterContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+    display:flex;
+    width: calc(50% - 40px);
+    min-height: 800px;
+    border: 1px solid $accent;
+    justify-content: space-between;
+    margin: 20px;
+    
+    .artistInfoContainer,
+    .spotifyContainer {
+        flex-basis: 50%;
+    }
+    
+    // .spotifyContainer {
+    //     width: 300px;
+    //     height: 300px;
+    // }
+}
+
+
+
+
