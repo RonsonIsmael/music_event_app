@@ -1,6 +1,7 @@
-$primary : rgb(154, 251, 197);
+$primary : lightgrey;
 $accent: #703DC7;
 $font-color: white;
+$card-color: #6457a6;
 
 $pfont: 'Yeseva One', cursive;
 $sfont: 'Roboto', sans-serif;
@@ -35,7 +36,6 @@ h2 {
 h3 {
     @include font-size(1.8rem);
     @include content();
-
 }
 
 p {
@@ -60,11 +60,18 @@ img {
     width: 200px;
     height: 200px; 
     border-radius: 150px;
+    margin-bottom: 30px;
+//     margin: 0 auto;
+// 
 }
 
 .imgHolder {
-    width: 300px;
-    margin: 0 auto;
+    // width: 300px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid white;
+    // margin: 0 auto;
+    
 }
 
 .masterContainer {
@@ -75,14 +82,20 @@ img {
 .container {
     display:flex;
     width: calc(50% - 40px);
-    min-height: 800px;
-    border: 1px solid $accent;
+    min-height: 500px;
     justify-content: space-between;
     margin: 20px;
+    background: $card-color;
+    box-shadow: 2px 4px 2px grey;
     
-    .artistInfoContainer,
+
+    .artistInfoContainer {
+        padding: 20px;
+        width: 60%;
+    }
+
     .spotifyContainer {
-        flex-basis: 50%;
+        width: 40%;
     }
     
     // .spotifyContainer {
