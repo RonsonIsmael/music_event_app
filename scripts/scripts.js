@@ -282,7 +282,19 @@ myApp.displayOnScreen = function(finalInfo) {
 
     finalInfo.forEach((item) => {
         const playlist = item.uri;
-        $(".masterContainer").append(`<div class='container container-${item.name}'><div class="artistInfoContainer"><div class="imgHolder"><img src="${item.image}" alt="picture of ${item.name}"></div><h2>${item.name}</h2><h3>${item.startDate}</h3><p>${item.venue}</p></div><div class="spotifyContainer"><iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="100%" height="300" frameborder="0" allowtransparency="true"></iframe></div></div>`);
+        $(".masterContainer").append(`<div class='container container-${item.name}'>
+                                            <div class="artistInfoContainer">
+                                                <div class="imgHolder">
+                                                    <img src="${item.image}" alt="picture of ${item.name}">
+                                                </div>
+                                                <h2>${item.name}</h2>
+                                                <h3>${item.startDate}</h3>
+                                                <p>${item.venue}</p>
+                                            </div>
+                                        <div class="spotifyContainer">
+                                            <iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="100%" height="100%" frameborder="0" allowtransparency="true"></iframe>
+                                            </div>
+                                    </div>`);
         console.log(item);
 
 
