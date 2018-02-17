@@ -1,47 +1,31 @@
-$primary : lightgrey;
+$primary : rgba(255, 255, 255, 0);
 $accent: #703DC7;
 $font-color: white;
-$card-color: #6457a6;
+$card-color: rgba(200, 200, 200, 1);
 
 $pfont: 'Yeseva One', cursive;
 $sfont: 'Roboto', sans-serif;
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.displayNone {
+    display: none;
+}
+
+.displayBlock {
+    display: block;
+}
+
+.flexContainer {
+    display: flex;
+}
+
 @import "partials/setup";
-
-@mixin font-size ($size){
-    font-size: $size;
-    color: $font-color;
-}
-
-@mixin headers () {
-    font-family: $pfont;
-}
-
-@mixin content () {
-    font-family: $sfont;
-}
-
-
-h1{
-    @include font-size(1.8rem);
-    @include headers();
-}
-
-h2 {
-    @include font-size(2rem);
-    @include headers();
-
-}
-
-h3 {
-    @include font-size(1.8rem);
-    @include content();
-}
-
-p {
-    @include font-size(1.6rem);
-    @include content();
-}
+@import "partials/typography";
+@import "partials/form";
 
 body {
     padding: 0;
@@ -63,6 +47,16 @@ img {
     margin-bottom: 30px;
 //     margin: 0 auto;
 // 
+}
+
+.startPage {
+    // background-image: url(../images/soundwaveImage.png);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    height: 100%;
+    // background-repeat: no-repeat;
+    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,1));
 }
 
 .imgHolder {

@@ -1,0 +1,37 @@
+.startPage .wrapper {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    // background: linear-gradient(rgba(255,255,255, 0.4), rgba(255,255,255, 0.2));
+    h1, blockquote, form, .input-container {
+        margin-bottom: 50px;
+    }
+
+    header {
+        background: linear-gradient(rgba(255,255,255, 0.4), rgba(255,255,255, 0.2));
+        padding-top:  50px;
+    }
+
+    form label {
+        @extend .displayNone;
+    }
+
+    input {
+        padding: 15px;
+        margin: 0 20px;
+        font-weight: 500;
+        background-color: #73aeb0;
+        border: 0;
+        border-radius: 5px;
+        color: white;
+        box-shadow: 2px 2px 2px lightgrey;
+    }
+
+    button {
+        padding: 15px;
+    }
+
+}
+

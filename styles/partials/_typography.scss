@@ -1,0 +1,38 @@
+@mixin headers () {
+    font-family: $pfont;
+}
+
+@mixin content () {
+    font-family: $sfont;
+}
+@mixin font-size ($size){
+    font-size: $size;
+    color: $font-color;
+}
+
+body {
+    @include content();
+}
+
+
+h1{
+    @include font-size(1.8rem);
+    @include headers();
+    margin: 0;
+}
+
+h2 {
+    @include font-size(2rem);
+    @include headers();
+
+}
+
+h3 {
+    @include font-size(1.2rem);
+    @include content();
+}
+
+p {
+    @include font-size(1.1rem);
+    @include content();
+}

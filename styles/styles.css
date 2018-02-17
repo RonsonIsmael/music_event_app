@@ -1,3 +1,18 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.displayNone, .startPage .wrapper form label {
+  display: none; }
+
+.displayBlock {
+  display: block; }
+
+.flexContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
 
@@ -132,10 +147,14 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+body {
+  font-family: "Roboto", sans-serif; }
+
 h1 {
   font-size: 1.8rem;
   color: white;
-  font-family: "Yeseva One", cursive; }
+  font-family: "Yeseva One", cursive;
+  margin: 0; }
 
 h2 {
   font-size: 2rem;
@@ -143,14 +162,48 @@ h2 {
   font-family: "Yeseva One", cursive; }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   color: white;
   font-family: "Roboto", sans-serif; }
 
 p {
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   color: white;
   font-family: "Roboto", sans-serif; }
+
+.startPage .wrapper {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  text-align: center; }
+  .startPage .wrapper h1, .startPage .wrapper blockquote, .startPage .wrapper form, .startPage .wrapper .input-container {
+    margin-bottom: 50px; }
+  .startPage .wrapper header {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0.2)));
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    background: -o-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    padding-top: 50px; }
+  .startPage .wrapper input {
+    padding: 15px;
+    margin: 0 20px;
+    font-weight: 500;
+    background-color: #73aeb0;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    -webkit-box-shadow: 2px 2px 2px lightgrey;
+    box-shadow: 2px 2px 2px lightgrey; }
+  .startPage .wrapper button {
+    padding: 15px; }
 
 body {
   padding: 0;
@@ -160,13 +213,23 @@ body {
   max-width: 1100px;
   width: 80%;
   margin: 0 auto;
-  background-color: lightgrey; }
+  background-color: rgba(255, 255, 255, 0); }
 
 img {
   width: 200px;
   height: 200px;
   border-radius: 150px;
   margin-bottom: 30px; }
+
+.startPage {
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(black));
+  background: -webkit-linear-gradient(black, black);
+  background: -o-linear-gradient(black, black);
+  background: linear-gradient(black, black); }
 
 .imgHolder {
   display: -webkit-box;
@@ -194,7 +257,7 @@ img {
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin: 20px;
-  background: #6457a6;
+  background: #c8c8c8;
   -webkit-box-shadow: 2px 4px 2px grey;
   box-shadow: 2px 4px 2px grey; }
   .container .artistInfoContainer {
