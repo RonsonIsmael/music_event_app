@@ -2,10 +2,10 @@ $primary : rgba(255, 255, 255, 0);
 $accent: #73aeb0;
 $font-color: grey;
 // $card-color: rgba(200, 200, 200, 1);
-$card-color: white;
+$card-color: hsla(162, 55%, 76%, 0.9);
 
-$pfont: 'Yeseva One', cursive;
-$sfont: 'Roboto', sans-serif;
+$sfont: 'Montserrat', sans-serif;
+$pfont: 'Roboto', sans-serif;
 
 * {
     margin: 0;
@@ -42,29 +42,32 @@ body {
 }
 
 img {
-    width: 200px;
-    height: 200px; 
-    border-radius: 150px;
+    width: 100%;
+    height: 100%; 
+    // border-radius: 150px;
     margin-bottom: 30px;
 //     margin: 0 auto;
 // 
 }
 
 .startPage {
-    // background-image: url(../images/soundwaveImage.png);
+    background-image: url(../images/unsplash_edit.jpg);
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
     height: 100%;
     // background-repeat: no-repeat;
-    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,1));
+    // background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,1));
 }
 
 .imgHolder {
     // width: 300px;
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid grey;
+    height: 200px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    // border-bottom: 1px solid grey;
     // margin: 0 auto;
     
 }
@@ -76,13 +79,16 @@ img {
 
 .container {
     display:flex;
-    width: calc(50% - 40px);
-    min-height: 500px;
-    justify-content: space-between;
+    flex-direction: column;
+    width: calc(33.3% - 40px);
+    min-height: 700px;
+    max-height: 700px;
+    // justify-content: space-between;
     margin: 20px;
     background: $card-color;
     box-shadow: 2px 4px 2px grey;
     position: relative;
+    padding: 10px;
 
     &:before {
         content: "";
@@ -104,19 +110,52 @@ img {
     
 
     .artistInfoContainer {
-        padding: 20px;
-        width: 60%;
+        // padding: 20px;
+        width: 100%;
+        h2 {
+            text-align: left;
+            text-transform: uppercase;
+        }
     }
 
     .spotifyContainer {
-        width: 40%;
+        width: 100%;
+        height: 500px;
+
     }
 
     .artistHeader {
         height: 70px;
     }
     
+    .date-location {
+        display: flex;
+        justify-content: space-between;
+        h3 {
+            border-right: 1px solid $accent;
+            padding-right: 2px;
+            width: 70%;
+            text-align: left;
+        }
+
+        p {
+            padding-left: 5px;
+           
+
+        }
+    }
     
+    
+}
+
+.error-message {
+    display: none;
+    text-align: center;
+    color: white;
+}
+
+.error-message-display {
+    display: block;
 }
 
 

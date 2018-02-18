@@ -16,26 +16,47 @@ body {
 
 
 h1{
-    @include font-size(3rem);
+    @include font-size(5rem);
     @include headers();
     margin: 0;
+    margin-top: 50px;
+    color: white;
+    text-align: left;
+    text-transform: uppercase;
 }
 
 h2 {
     @include font-size(1.8rem);
     @include headers();
-    color: $accent;
-    text-align: left;
+    color: white;
+    text-justify: left;
     margin: 20px 0;
 
 }
 
 h3 {
-    @include font-size(1.2rem);
+    @include font-size(1rem);
     @include content();
+    color: $accent;
 }
 
 p {
-    @include font-size(1.1rem);
+    @include font-size(1rem);
     @include content();
+    color: $accent;
+}
+
+.artist-title {
+    width: 70%;
+    text-align: left;
+}
+
+blockquote.sub-header {
+    @include font-size(1.8rem);
+    @include headers();
+    color: white;
+    text-align: left;
+    margin-top: 50px;
+    // text-transform: uppercase;
+
 }
