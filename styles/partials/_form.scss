@@ -15,16 +15,43 @@
         padding-top:  50px;
     }
 
-    form label {
-        @extend .displayNone;
+    .input-container {
+        @extend .flexContainer;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        
+
+        .input-item {
+            text-align: left;
+            width: 200px;
+            // margin-right: 50px;
+
+            label {
+                @include content();
+                font-weight: 700;
+                color: white;
+            }
+        }
+
+    }
+
+    .how-to-use {
+        display: flex;
+        flex-direction: column;
+        border: 5px solid white;
+        padding: 20px;
+        background: linear-gradient(hsla(216, 67%, 40%, 0.6) hsla(216, 67%, 40%, 0.6));
+        margin-bottom: 200px;
     }
 
     input {
 
         padding: 10px;
-        margin: 20px 5px;
+        margin: 20px 0 0 0;
         font-weight: 500;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 1);
         border: 0;
         border-radius: 2px;
         color: #73aeb0;
@@ -40,8 +67,9 @@
         color: white;
         border: 0;
         box-shadow: 0px 1px 1px grey;
-        width: 150px;
+        width: 200px;
         height: 50px;
+        margin: 20px 0 0 0;
     }
 
 }
@@ -61,4 +89,42 @@
 ::placeholder {
     color:rgb(144, 146, 150);
     text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+    .wrapper header .how-to-use .input-container {
+        justify-content: space-around;
+        margin-bottom: 0;
+
+        .input-item {
+            margin-bottom: 40px;
+            margin-right: 20px;
+        }
+
+        .input-item:last-of-type {
+            margin-bottom: 0;
+        }
+
+
+    }
+
+        
+}
+
+@media (max-width: 890px) {
+    .wrapper header .how-to-use .input-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        // width: 200px;
+        
+
+        button {
+            margin: 20px 5px;
+        }
+        
+    }
+
+
+
 }
