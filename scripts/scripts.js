@@ -94,149 +94,52 @@ myApp.setupSpotify = function(eventInfo) {
 
 myApp.getArtistID = function(eventInfo) {
 
-            // console.log(eventInfo);
+    // console.log(eventInfo);
 
-            const getResponses = function(artist) {
-                let url = "https://api.spotify.com/v1/";
-               return $.ajax({
-                   url: url + "search",
-                   method: "GET",
-                   headers: headers,
-                   dataType: "json",
-                   data: {
-                       type: "artist",
-                       q: artist.name,
-                       limit: 1
-                   }
-                });
+    const getResponses = function(artist) {
+        let url = "https://api.spotify.com/v1/";
+        return $.ajax({
+            url: url + "search",
+            method: "GET",
+            headers: headers,
+            dataType: "json",
+            data: {
+                type: "artist",
+                q: artist.name,
+                limit: 1
             }
+        });
+    }
 
-            const responses = [];
-            eventInfo.forEach(function(item){
-                responses.push(getResponses(item));
-            });
+    const responses = [];
+    eventInfo.forEach(function(item){
+        responses.push(getResponses(item));
+    });
 
-            $.when(...responses) 
-                .then((...args) => {
-                    //args is the artist information
-                    console.log(args);
-                    args = args.map(arg => arg[0].artists.items);
-                    console.log(args);
-                    // artistID = args.map(arg => arg[0].id);
-                    let finalInfo = eventInfo.map((item, i) => {
-                        return {
-                            artist: item,
-                            spotify: args[i]
-                        }
-                    })
-                    
-                    console.log(finalInfo);
-                    finalInfo = finalInfo.filter(item => item.spotify.length > 0);
+    $.when(...responses) 
+        .then((...args) => {
+            //args is the artist information
+            console.log(args);
+            args = args.map(arg => arg[0].artists.items);
+            console.log(args);
+            // artistID = args.map(arg => arg[0].id);
+            let finalInfo = eventInfo.map((item, i) => {
+                return {
+                    artist: item,
+                    spotify: args[i]
+                }
+            })
+            
+            console.log(finalInfo);
+            finalInfo = finalInfo.filter(item => item.spotify.length > 0);
 
-                    console.log(finalInfo);
-                   
-                   //this args represents the artist id
-                    myApp.displayOnScreen(finalInfo);
-                })
+            console.log(finalInfo);
+            
+            //this args represents the artist id
+            myApp.displayOnScreen(finalInfo);
+        })
 }
 
-
-
-
-// //using arists's id, we look for the top tracks
-// myApp.getArtistTracks = function(artistSpotify, eventInfo) {
-//     // console.log(artistImage);
-
-//     //function to be used to run url from id to get sets of top tracks per artist
-//     const getTracks = function(url) {
-//         return $.ajax({
-//             url: url,
-//             method: "GET",
-//             headers: headers,
-//             dataType: "json"
-//         })
-//     }
-    
-//     // console.log(id);
-//     //empty array that we will stuff the tracks into
-//     const topTracks = [];
-//     //per artist id, we will run the function get tracks
-//     id.forEach((item) => {
-//         let url = `https://api.spotify.com/v1/artists/${item}/top-tracks?country=CA`;
-//         // console.log(url);
-//         //pushes each set of tracks into topTracks
-//         topTracks.push(getTracks(url));
-//     })
-
-//     // console.log(topTracks);
-
-//     //whait all items of topTracks to be done done loading, 
-//     $.when(...topTracks)
-//         //then takes all of the resolved tracks and stores them as arguements
-//         .then((...args) => {
-//             // console.log(args);
-//             args = args.map((tracks) => {
-//                 return tracks[0].tracks;
-//             })
-//             // console.log(args);
-//             args = args.map((tracks) => {
-//                 return tracks.map((item) => {
-//                     return item.uri;
-//                 })
-//             })
-//             // console.log(args);
-//             myApp.displayOnScreen(topTracks, eventInfo);
-//         })
-
-       
-
-//         // const responses = [];
-//         // eventInfo.forEach(function(item){
-//         //     responses.push(getTracks(item));
-//         // });
-    
-//         // $.when(...responses) 
-//         //     .then((...args) => {
-//         //         console.log(args);
-//         //     //    args = args.map(arg => arg[0].artists.items);
-//         //     //    args = args.filter(item => item.length > 0);
-//         //     //    artistID = args.map(arg => arg[0].id);
-//         //     //    console.log(args);     
-//         //     })
-//     // }
-// }
- 
-             
-        //        let url = "https://api.spotify.com/v1/";
-        //        $.ajax({
-        //            url: url + "search",
-        //            method: "GET",
-        //            headers: headers,
-        //            dataType: "json",
-        //            data: {
-        //                type: "artist",
-        //                q: artist.name,
-        //                limit: 1
-        //            }
-        //        }).then(function (res) {
-        //        });
-              
-
-        //    }).then(function(){
-
-        //    })
-        // artistsWithIDs = artistsWithIDs.filter(artist => {
-        //     artist.artists.items.length !== 0;
-        // });
-
-//         console.log(artistsWithIDs);
-// }
-
-// eventInfo.forEach(function (artist) {
-    // console.log(artist.name);
-
-
-// });
 
 //displays information on screen
 myApp.displayOnScreen = function(finalInfo) {
@@ -258,43 +161,6 @@ myApp.displayOnScreen = function(finalInfo) {
 
     console.log(finalInfo);
 
-    
-
-    // function dedupeByKey(arr, key) {
-    //     const temp = arr.map(el => el[key]);
-    //     return arr.filter((el, i) =>
-    //       temp.indexOf(el[key]) === i
-    //     );
-    //    }
-
-    // console.log(newFinalInfo);
-    // let onlyTracks = topTracks.map((item) => {
-    //     return item.responseJSON.tracks;
-    // })
-
-    // console.log(onlyTracks);
-
-    // let finalInfo = artistInfo.map((item,i) => {
-    //     return {
-    //         artist: item,
-    //         tracks: onlyTracks[i]
-    //         // artistTracks: tracks[i].responseJSON.tracks
-    //     }
-    // })
-
-    // let finalInfo2 = artistInfo.map((item, i) => {
-    //     return {
-    //         artist: item,
-    //         spotify: artistSpotify[i]
-    //     }
-    // })
-
-    
-        //adding the tracks array to the object
-        // tracks.forEach(function(track){
-        //     item.trackList = track.responseJSON.tracks
-        // });
-
     finalInfo.forEach((item) => {
         const playlist = item.uri;
         $(".masterContainer").append(`<div class='container container-${item.name}'>
@@ -305,7 +171,10 @@ myApp.displayOnScreen = function(finalInfo) {
                                                 </div>
                                                 <div class="date-location">
                                                     <h3>${item.venue}</h3>
-                                                    <p>${item.startDate}</p>
+                                                    <div class="ticket-info">
+                                                        <p>${item.startDate}</p>
+                                                        <a href="${item.url}" target="_blank"><i class="fa fa-ticket" aria-hidden="true"></i></a>
+                                                    </div>
                                                 </div>
                                                 <div class="imgHolder">
                                                     <img src="${item.image}" alt="picture of ${item.name}">
@@ -317,27 +186,23 @@ myApp.displayOnScreen = function(finalInfo) {
                                     </div>`);
         console.log(item);
 
-
-       
-            // // console.log(track.artists[0].uri);
-            // const playlist = item.uri;
-            // console.log(playlist);
-            // const iframe = `<iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="250" height="300" frameborder="0" allowtransparency="true"></iframe>`;
-
-            // $(`.container-${item.name}`).append(iframe);
-
-      
-
-
     })
-
-
 }
 
+myApp.typeIt = function () {
+    $(".type-it").text("...")
+    new TypeIt ('.type-it', {
+        strings: ["...", "...", "...", "..."]
+    })
+}
+
+    
+ 
 
 myApp.formSubmit = function() {
     $("form").on("submit", function(e){
         e.preventDefault();
+        myApp.typeIt(); 
         let userLocation = $("input[type=text]").val();
         // console.log(userLocation);
 
@@ -348,6 +213,7 @@ myApp.formSubmit = function() {
         // console.log(userEndDate);
 
         myApp.getTicketMasterEvents(userLocation, userStartDate, userEndDate);
+
 
     });
 }

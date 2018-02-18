@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Yeseva+One" 
     rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <script src='https://use.fontawesome.com/863f28bd20.js'></script>
     <link rel="stylesheet" href="styles/styles.css">
     <title>Document</title>
 </head>
@@ -17,28 +18,41 @@
             <header>
                 <div class="header-title"><h1>Did you hear?</h1></div>
     
-                <blockquote class="sub-header">Find shows in your area and listen to a sample from the artist</blockquote>
+               
 
-                
-                
-                <form action="">
-                    <div class="input-container">
-                        <label for="userLocation">Location</label>
-                        <input type="text" class="userLocation" placeholder="Location">
-                        <label for="userStartDate">Enter End Date</label>
-                        <input type="date" class="userStartDate" name="userStartDate">
-                        <label for="userEndDate">Enter End Date</label>
-                        <input type="date" class="userEndDate" name="userEndDate" value="YYYY-MM-DD">
-                        <button>Submit</button>
-                    </div>
-            
+              <div class="how-to-use">
+                    <blockquote class="sub-header">Find shows in your area and listen to a sample from the artist</blockquote>
                     
-                    <p class="error-message">Sorry we can't find any shows in that area currently</p>
-        
-        
-                </form>
+                    <form action="">
+                        
+                        <div class="input-container">
+                            <div class="input-item">
+                                <label for="userLocation">Location</label>
+                                <input type="text" class="userLocation" placeholder="Location">
+                            </div>
+                            <div class="input-item">
+                                <label for="userStartDate">Enter Start Date</label>
+                                <input type="date" class="userStartDate" name="userStartDate">
+                            </div>
+                            <div class="input-item">
+                                <label for="userEndDate">Enter End Date</label>
+                                <input type="date" class="userEndDate" name="userEndDate" value="YYYY-MM-DD">
+                            </div>
+                            <div class="input-item">
+                                    <button class="type-it">Submit</button>
+                            </div>
+                             
+                        </div>
+                
+                        
+                        <p class="error-message">Sorry we can't find any shows in that area currently</p>
+            
+            
+                    </form>
+              </div>
             </header>
-            <div class="masterContainer">
+            <div class="masterContainer" id="masterContainer">
+                
                 
     
             </div>
@@ -47,6 +61,8 @@
     </div>
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.1.2/jquery.smooth-scroll.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/typeit@5.5.0/dist/typeit.min.js"></script>
     <script src="scripts/scripts.js"></script>
 </body>
 </html>
