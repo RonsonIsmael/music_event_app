@@ -287,3 +287,5 @@ img {
     width: 60%; }
   .container .spotifyContainer {
     width: 40%; }
+  .container .artistHeader {
+    height: 70px; }
