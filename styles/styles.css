@@ -192,6 +192,9 @@ blockquote.sub-header {
   text-align: left;
   margin-top: 50px; }
 
+.header-title {
+  width: 30%; }
+
 .startPage .wrapper {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
