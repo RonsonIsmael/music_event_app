@@ -301,20 +301,19 @@ myApp.displayOnScreen = function(finalInfo) {
                                             <div class="artistInfoContainer">
                                                 
                                                 <div class="artist-title">
-                                                <h2>${item.name}</h2>
+                                                    <h2>${item.name}</h2>
                                                 </div>
                                                 <div class="date-location">
                                                     <h3>${item.venue}</h3>
                                                     <p>${item.startDate}</p>
-                                                    
                                                 </div>
                                                 <div class="imgHolder">
                                                     <img src="${item.image}" alt="picture of ${item.name}">
                                                 </div>
                                             </div>
                                         <div class="spotifyContainer">
-                                            <iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="100%" height="100%" frameborder="0" allowtransparency="true"></iframe>
-                                            </div>
+                                            <iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="100%" height="600" frameborder="0" allowtransparency="true"></iframe>
+                                        </div>
                                     </div>`);
         console.log(item);
 

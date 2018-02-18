@@ -46,21 +46,3 @@ p {
     color: $accent;
 }
 
-.artist-title {
-    width: 70%;
-    text-align: left;
-}
-
-blockquote.sub-header {
-    @include font-size(1.8rem);
-    @include headers();
-    color: white;
-    text-align: left;
-    margin-top: 50px;
-    // text-transform: uppercase;
-
-}
-
-.header-title {
-    width: 30%;
-}

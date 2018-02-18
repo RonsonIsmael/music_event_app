@@ -2,7 +2,7 @@ $primary : rgba(255, 255, 255, 0);
 $accent: #73aeb0;
 $font-color: grey;
 // $card-color: rgba(200, 200, 200, 1);
-$card-color: hsla(162, 55%, 76%, 0.9);
+$card-color: hsla(216, 67%, 40%, 0.9);
 
 $sfont: 'Montserrat', sans-serif;
 $pfont: 'Roboto', sans-serif;
@@ -58,6 +58,20 @@ img {
     height: 100%;
     // background-repeat: no-repeat;
     // background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,1));
+
+    .header-title {
+        width: 30%;
+    }
+
+    blockquote.sub-header {
+        @include font-size(1.8rem);
+        @include headers();
+        color: white;
+        text-align: left;
+        margin-top: 50px;
+        // text-transform: uppercase;
+    
+    }
 }
 
 .imgHolder {
@@ -84,9 +98,9 @@ img {
     min-height: 700px;
     max-height: 700px;
     // justify-content: space-between;
-    margin: 20px;
+    margin: 20px 40px 20px 0;
     background: $card-color;
-    box-shadow: 2px 4px 2px grey;
+    box-shadow: 2px 4px 2px rgb(67, 73, 153);
     position: relative;
     padding: 10px;
 
@@ -95,8 +109,8 @@ img {
         position: absolute;
         width: 50px;
         border: 2px solid #73aeb0;
-        top: 5%;
-        left: -5%;
+        top: 20%;
+        right: -5%;
     }
 
     &:after {
@@ -104,8 +118,8 @@ img {
         position: absolute;
         width: 50px;
         border: 2px solid #73aeb0;
-        top: 8%;
-        left: -5%;
+        top: 18%;
+        right: -5%;
     }
     
 
@@ -120,7 +134,8 @@ img {
 
     .spotifyContainer {
         width: 100%;
-        height: 500px;
+        height: 100%;
+        overflow-y: auto;
 
     }
 
@@ -131,18 +146,30 @@ img {
     .date-location {
         display: flex;
         justify-content: space-between;
+        height: 80px;
+        align-items: flex-start;
         h3 {
-            border-right: 1px solid $accent;
             padding-right: 2px;
-            width: 70%;
+            width: 60%;
             text-align: left;
+            
         }
-
+        
         p {
             padding-left: 5px;
+            border-left: 1px solid $accent;
            
 
         }
+    }
+
+    .artist-title {
+        width: 100%;
+        text-align: left;
+        height: 150px;
+        border: 5px solid white;
+        padding-left: 10px;
+        margin-bottom: 20px;
     }
     
     
