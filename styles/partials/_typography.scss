@@ -16,14 +16,17 @@ body {
 
 
 h1{
-    @include font-size(1.8rem);
+    @include font-size(3rem);
     @include headers();
     margin: 0;
 }
 
 h2 {
-    @include font-size(2rem);
+    @include font-size(1.8rem);
     @include headers();
+    color: $accent;
+    text-align: left;
+    margin: 20px 0;
 
 }
 

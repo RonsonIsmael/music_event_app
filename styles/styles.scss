@@ -1,7 +1,8 @@
 $primary : rgba(255, 255, 255, 0);
-$accent: #703DC7;
-$font-color: white;
-$card-color: rgba(200, 200, 200, 1);
+$accent: #73aeb0;
+$font-color: grey;
+// $card-color: rgba(200, 200, 200, 1);
+$card-color: white;
 
 $pfont: 'Yeseva One', cursive;
 $sfont: 'Roboto', sans-serif;
@@ -63,7 +64,7 @@ img {
     // width: 300px;
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid grey;
     // margin: 0 auto;
     
 }
@@ -81,6 +82,25 @@ img {
     margin: 20px;
     background: $card-color;
     box-shadow: 2px 4px 2px grey;
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        border: 2px solid #73aeb0;
+        top: 5%;
+        left: -5%;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        border: 2px solid #73aeb0;
+        top: 8%;
+        left: -5%;
+    }
     
 
     .artistInfoContainer {
@@ -91,11 +111,6 @@ img {
     .spotifyContainer {
         width: 40%;
     }
-    
-    // .spotifyContainer {
-    //     width: 300px;
-    //     height: 300px;
-    // }
 }
 
 

@@ -151,24 +151,27 @@ body {
   font-family: "Roboto", sans-serif; }
 
 h1 {
-  font-size: 1.8rem;
-  color: white;
+  font-size: 3rem;
+  color: grey;
   font-family: "Yeseva One", cursive;
   margin: 0; }
 
 h2 {
-  font-size: 2rem;
-  color: white;
-  font-family: "Yeseva One", cursive; }
+  font-size: 1.8rem;
+  color: grey;
+  font-family: "Yeseva One", cursive;
+  color: #73aeb0;
+  text-align: left;
+  margin: 20px 0; }
 
 h3 {
   font-size: 1.2rem;
-  color: white;
+  color: grey;
   font-family: "Roboto", sans-serif; }
 
 p {
   font-size: 1.1rem;
-  color: white;
+  color: grey;
   font-family: "Roboto", sans-serif; }
 
 .startPage .wrapper {
@@ -196,14 +199,18 @@ p {
     padding: 15px;
     margin: 0 20px;
     font-weight: 500;
-    background-color: #73aeb0;
+    background-color: white;
     border: 0;
     border-radius: 5px;
-    color: white;
-    -webkit-box-shadow: 2px 2px 2px lightgrey;
-    box-shadow: 2px 2px 2px lightgrey; }
+    color: #73aeb0; }
   .startPage .wrapper button {
-    padding: 15px; }
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #73aeb0;
+    color: white;
+    border: 0;
+    -webkit-box-shadow: 0px 4px 2px grey;
+    box-shadow: 0px 4px 2px grey; }
 
 body {
   padding: 0;
@@ -238,7 +245,7 @@ img {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-bottom: 1px solid white; }
+  border-bottom: 1px solid grey; }
 
 .masterContainer {
   display: -webkit-box;
@@ -257,9 +264,24 @@ img {
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin: 20px;
-  background: #c8c8c8;
+  background: white;
   -webkit-box-shadow: 2px 4px 2px grey;
-  box-shadow: 2px 4px 2px grey; }
+  box-shadow: 2px 4px 2px grey;
+  position: relative; }
+  .container:before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    border: 2px solid #73aeb0;
+    top: 5%;
+    left: -5%; }
+  .container:after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    border: 2px solid #73aeb0;
+    top: 8%;
+    left: -5%; }
   .container .artistInfoContainer {
     padding: 20px;
     width: 60%; }
