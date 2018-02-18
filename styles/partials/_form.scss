@@ -22,16 +22,19 @@
         padding: 15px;
         margin: 0 20px;
         font-weight: 500;
-        background-color: #73aeb0;
+        background-color: white;
         border: 0;
         border-radius: 5px;
-        color: white;
-        box-shadow: 2px 2px 2px lightgrey;
+        color: #73aeb0;
     }
 
     button {
         padding: 15px;
+        border-radius: 5px;
+        background-color: #73aeb0;
+        color: white;
+        border: 0;
+        box-shadow: 0px 4px 2px grey;
     }
 
 }
-
