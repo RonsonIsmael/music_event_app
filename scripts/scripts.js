@@ -27,6 +27,19 @@ myApp.getTicketMasterEvents = (userLocation, userStartDate, userEndDate) => {
 }
 
 myApp.getEventInfo = function(res) {
+                
+
+                if (res._embedded === undefined) {
+                    console.log("No events available in your area");
+                    $(".error-message").addClass("error-message-display");
+                    $(".masterContainer").html("");
+                }
+                else {
+                    
+                    $(".error-message").removeClass("error-message-display");
+
+                }
+
                 const events = res._embedded.events;
 
                 console.log(events);
@@ -230,6 +243,8 @@ myApp.displayOnScreen = function(finalInfo) {
     // console.log("display on te screen");
     console.log(finalInfo)
 
+    $(".masterContainer").html("");
+
     finalInfo = finalInfo.map((item) => {
         return {
             name: item.artist.name,
@@ -284,12 +299,18 @@ myApp.displayOnScreen = function(finalInfo) {
         const playlist = item.uri;
         $(".masterContainer").append(`<div class='container container-${item.name}'>
                                             <div class="artistInfoContainer">
+                                                
+                                                <div class="artist-title">
+                                                <h2>${item.name}</h2>
+                                                </div>
+                                                <div class="date-location">
+                                                    <h3>${item.venue}</h3>
+                                                    <p>${item.startDate}</p>
+                                                    
+                                                </div>
                                                 <div class="imgHolder">
                                                     <img src="${item.image}" alt="picture of ${item.name}">
                                                 </div>
-                                                <h2>${item.name}</h2>
-                                                <h3>${item.startDate}</h3>
-                                                <p>${item.venue}</p>
                                             </div>
                                         <div class="spotifyContainer">
                                             <iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="100%" height="100%" frameborder="0" allowtransparency="true"></iframe>

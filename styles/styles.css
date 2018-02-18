@@ -148,36 +148,60 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box; }
 
 body {
-  font-family: "Roboto", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
 
 h1 {
-  font-size: 3rem;
+  font-size: 5rem;
   color: grey;
-  font-family: "Yeseva One", cursive;
-  margin: 0; }
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  margin-top: 50px;
+  color: white;
+  text-align: left;
+  text-transform: uppercase; }
 
 h2 {
   font-size: 1.8rem;
   color: grey;
-  font-family: "Yeseva One", cursive;
-  color: #73aeb0;
-  text-align: left;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  text-justify: left;
   margin: 20px 0; }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: grey;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  color: #73aeb0; }
 
 p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: grey;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  color: #73aeb0; }
+
+.artist-title {
+  width: 70%;
+  text-align: left; }
+
+blockquote.sub-header {
+  font-size: 1.8rem;
+  color: grey;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  text-align: left;
+  margin-top: 50px; }
+
+.header-title {
+  width: 30%; }
 
 .startPage .wrapper {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -190,27 +214,41 @@ p {
   .startPage .wrapper h1, .startPage .wrapper blockquote, .startPage .wrapper form, .startPage .wrapper .input-container {
     margin-bottom: 50px; }
   .startPage .wrapper header {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0.2)));
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
-    background: -o-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
     padding-top: 50px; }
   .startPage .wrapper input {
-    padding: 15px;
-    margin: 0 20px;
+    padding: 10px;
+    margin: 0 5px;
     font-weight: 500;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 0;
-    border-radius: 5px;
-    color: #73aeb0; }
+    border-radius: 2px;
+    color: #73aeb0;
+    width: 200px; }
   .startPage .wrapper button {
-    padding: 15px;
+    padding: 10px;
     border-radius: 5px;
     background-color: #73aeb0;
     color: white;
     border: 0;
-    -webkit-box-shadow: 0px 4px 2px grey;
-    box-shadow: 0px 4px 2px grey; }
+    -webkit-box-shadow: 0px 1px 1px grey;
+    box-shadow: 0px 1px 1px grey;
+    width: 150px; }
+
+::-webkit-input-placeholder {
+  color: #909296;
+  text-transform: uppercase; }
+
+:-ms-input-placeholder {
+  color: #909296;
+  text-transform: uppercase; }
+
+::-ms-input-placeholder {
+  color: #909296;
+  text-transform: uppercase; }
+
+::placeholder {
+  color: #909296;
+  text-transform: uppercase; }
 
 body {
   padding: 0;
@@ -223,20 +261,16 @@ body {
   background-color: rgba(255, 255, 255, 0); }
 
 img {
-  width: 200px;
-  height: 200px;
-  border-radius: 150px;
+  width: 100%;
+  height: 100%;
   margin-bottom: 30px; }
 
 .startPage {
+  background-image: url(../images/unsplash_edit.jpg);
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
-  height: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(black), to(black));
-  background: -webkit-linear-gradient(black, black);
-  background: -o-linear-gradient(black, black);
-  background: linear-gradient(black, black); }
+  height: 100%; }
 
 .imgHolder {
   display: -webkit-box;
@@ -245,7 +279,9 @@ img {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-bottom: 1px solid grey; }
+  height: 200px;
+  margin-bottom: 5px;
+  margin-top: 15px; }
 
 .masterContainer {
   display: -webkit-box;
@@ -258,16 +294,19 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: calc(50% - 40px);
-  min-height: 500px;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(33.3% - 40px);
+  min-height: 700px;
+  max-height: 700px;
   margin: 20px;
-  background: white;
+  background: rgba(160, 227, 207, 0.9);
   -webkit-box-shadow: 2px 4px 2px grey;
   box-shadow: 2px 4px 2px grey;
-  position: relative; }
+  position: relative;
+  padding: 10px; }
   .container:before {
     content: "";
     position: absolute;
@@ -283,9 +322,34 @@ img {
     top: 8%;
     left: -5%; }
   .container .artistInfoContainer {
-    padding: 20px;
-    width: 60%; }
+    width: 100%; }
+    .container .artistInfoContainer h2 {
+      text-align: left;
+      text-transform: uppercase; }
   .container .spotifyContainer {
-    width: 40%; }
+    width: 100%;
+    height: 500px; }
   .container .artistHeader {
     height: 70px; }
+  .container .date-location {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .container .date-location h3 {
+      border-right: 1px solid #73aeb0;
+      padding-right: 2px;
+      width: 70%;
+      text-align: left; }
+    .container .date-location p {
+      padding-left: 5px; }
+
+.error-message {
+  display: none;
+  text-align: center;
+  color: white; }
+
+.error-message-display {
+  display: block; }
