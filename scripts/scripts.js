@@ -141,10 +141,12 @@ myApp.getArtistID = function(eventInfo) {
 }
 
 
+
+
 //displays information on screen
 myApp.displayOnScreen = function(finalInfo) {
     // console.log("display on te screen");
-    console.log(finalInfo)
+   
 
     $(".masterContainer").html("");
 
@@ -159,11 +161,27 @@ myApp.displayOnScreen = function(finalInfo) {
         }
     });
 
+    console.log(finalInfo)
+
+    finalInfo = finalInfo.reduce(function (accumulator, current) {
+        if (checkIfAlreadyExist(current)) {
+            return accumulator
+        } else {
+            return accumulator.concat([current]);
+        }
+
+        function checkIfAlreadyExist(currentVal) {
+            return accumulator.some(function (item) {
+                return (item.name === currentVal.name)
+            });
+        }
+    }, []);
+
     console.log(finalInfo);
 
     finalInfo.forEach((item) => {
         const playlist = item.uri;
-        $(".masterContainer").append(`<div class='container container-${item.name}'>
+        $(".masterContainer").append(`<div class='container container-${item.name}' id="card">
                                             <div class="artistInfoContainer">
                                                 
                                                 <div class="artist-title">
@@ -196,13 +214,35 @@ myApp.typeIt = function () {
     })
 }
 
-    
+myApp.smoothScroll = function () {
+    const scroll = setTimeout(function () {
+        $('html, body').animate({
+            scrollTop: $("#card").offset().top
+        }, 1000);
+        $(".type-it").text("Submit");
+    }, 2000);
+
+}  
+
+
+// myApp.fadeIn = function () {
+//     $(window).on("scroll", function () {
+//         if ($("body").scrollTop() === 1000) {
+//             $(window).off("scroll");
+//             $("#card").fadeIn();
+//         }
+//     });
+// }
  
 
 myApp.formSubmit = function() {
     $("form").on("submit", function(e){
         e.preventDefault();
-        myApp.typeIt(); 
+        $(".type-it").text("Processing...");
+        // myApp.typeIt(); 
+        myApp.smoothScroll();
+        // myApp.fadeIn();
+        
         let userLocation = $("input[type=text]").val();
         // console.log(userLocation);
 

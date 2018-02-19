@@ -335,7 +335,8 @@ p {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  min-width: 100%; }
   .masterContainer .wrapper {
     margin: 0; }
 
