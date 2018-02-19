@@ -67,7 +67,7 @@ let headers = {};
 
 myApp.setupSpotify = function(eventInfo) {
     $.ajax({
-        url: "http://proxy.hackeryou.com",
+        url: "https://proxy.hackeryou.com",
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
