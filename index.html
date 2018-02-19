@@ -8,6 +8,7 @@
     rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <script src='https://use.fontawesome.com/863f28bd20.js'></script>
+    <link rel="stylesheet" href="styles/animate1.css">
     <link rel="stylesheet" href="styles/styles.css">
     <title>Document</title>
 </head>
@@ -22,8 +23,11 @@
 
               <div class="how-to-use">
                     <blockquote class="sub-header">Find shows in your area and listen to a sample from the artist</blockquote>
+
+                    <div class="arrowHolder up"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></div>
+                    <div class="arrowHolder displayNone down"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></div>
                     
-                    <form action="">
+                    <form action="" class="displayNone">
                         
                         <div class="input-container">
                             <div class="input-item">
@@ -36,7 +40,7 @@
                             </div>
                             <div class="input-item">
                                 <label for="userEndDate">Enter End Date</label>
-                                <input type="date" class="userEndDate" name="userEndDate" value="YYYY-MM-DD">
+                                <input type="date" class="userEndDate" name="userEndDate">
                             </div>
                             <div class="input-item">
                                     <button class="type-it">Submit</button>

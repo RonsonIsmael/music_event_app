@@ -28,6 +28,7 @@ $pfont: 'Roboto', sans-serif;
 @import "partials/typography";
 @import "partials/form";
 @import "partials/main";
+@import "partials/hovers";
 
 body {
     padding: 0;
@@ -49,6 +50,11 @@ img {
     margin-bottom: 30px;
 //     margin: 0 auto;
 // 
+}
+
+.fa-arrow-circle-down,
+.fa-arrow-circle-up {
+    animation: bounce 1s infinite;
 }
 
 
