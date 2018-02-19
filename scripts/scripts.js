@@ -207,32 +207,15 @@ myApp.displayOnScreen = function(finalInfo) {
     })
 }
 
-myApp.typeIt = function () {
-    $(".type-it").text("...")
-    new TypeIt ('.type-it', {
-        strings: ["...", "...", "...", "..."]
-    })
-}
-
 myApp.smoothScroll = function () {
     const scroll = setTimeout(function () {
         $('html, body').animate({
             scrollTop: $("#card").offset().top
         }, 1000);
         $(".type-it").text("Submit");
-    }, 2000);
+    }, 4000);
 
 }  
-
-
-// myApp.fadeIn = function () {
-//     $(window).on("scroll", function () {
-//         if ($("body").scrollTop() === 1000) {
-//             $(window).off("scroll");
-//             $("#card").fadeIn();
-//         }
-//     });
-// }
  
 
 myApp.formSubmit = function() {
@@ -253,8 +236,14 @@ myApp.formSubmit = function() {
         // console.log(userEndDate);
 
         myApp.getTicketMasterEvents(userLocation, userStartDate, userEndDate);
+    });
 
+    $(".arrowHolder").on("click", function(){
+        $("form").slideToggle({
+            duration: 500
+        });
 
+        $(".up, .down").toggleClass("displayNone");
     });
 }
 

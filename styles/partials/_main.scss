@@ -59,6 +59,7 @@
     position: relative;
     padding: 10px;
     border-radius: 3px;
+    transition: all .5s ease;
 
     &:before {
         content: "";
@@ -183,5 +184,15 @@
 @media (max-width: 530px) {
     .masterContainer .container {
         padding: 40px 50px;
+    }
+}
+
+@media (max-width:350px) {
+    .startPage .wrapper {
+        width: 100%;
+    }
+
+    .date-location {
+        margin-bottom: 20px;
     }
 }
