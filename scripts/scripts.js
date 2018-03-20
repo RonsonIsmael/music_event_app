@@ -1,12 +1,8 @@
 
-//get user location from input, user date
-
 const myApp = {};
 
-//takes userlocation and user date from form submission to submit to ticketgmaster
-//looks for events in ticketmaster based on location and date
+//queries the TicketMaster API for music events in ticketmaster based on location and date
 myApp.getTicketMasterEvents = (userLocation, userStartDate, userEndDate) => {
-    // console.log("were in ticketMaster");
     //ticketmaster API
         $.ajax({
             url: "https://app.ticketmaster.com/discovery/v2/events",
@@ -26,6 +22,9 @@ myApp.getTicketMasterEvents = (userLocation, userStartDate, userEndDate) => {
         });
 }
 
+//Checks if there are music events in the area
+//Checks if the event contains the attractions object
+//If yes, returns an object with information about the event
 myApp.getEventInfo = function(res) {
                 
 
@@ -42,10 +41,6 @@ myApp.getEventInfo = function(res) {
 
                 const events = res._embedded.events;
 
-                console.log(events);
-
-                // console.log(events[0].name)
-
                 let eventInfo = events
                     .filter(item => item._embedded.attractions !== undefined)
                     .map(function (item) {
@@ -57,14 +52,13 @@ myApp.getEventInfo = function(res) {
                             image: item.images[0].url
                         }
                     })
-                // console.log(eventInfo);
                 myApp.setupSpotify(eventInfo);  
 
 }
 
-// //spotify API
 let headers = {};
 
+//Authorization for Spotify
 myApp.setupSpotify = function(eventInfo) {
     $.ajax({
         url: "https://proxy.hackeryou.com",
@@ -83,7 +77,6 @@ myApp.setupSpotify = function(eventInfo) {
             }
         })
     }).then(function (res) {
-        // console.log(res);
         headers = {
             "Authorization": res.token_type + " " + res.access_token
         }
@@ -92,9 +85,8 @@ myApp.setupSpotify = function(eventInfo) {
       
 }
 
+//Searches the spotify API for an artist and returns the first artist found matching the query
 myApp.getArtistID = function(eventInfo) {
-
-    // console.log(eventInfo);
 
     const getResponses = function(artist) {
         let url = "https://api.spotify.com/v1/";
@@ -119,23 +111,15 @@ myApp.getArtistID = function(eventInfo) {
     $.when(...responses) 
         .then((...args) => {
             //args is the artist information
-            console.log(args);
             args = args.map(arg => arg[0].artists.items);
-            console.log(args);
-            // artistID = args.map(arg => arg[0].id);
             let finalInfo = eventInfo.map((item, i) => {
                 return {
                     artist: item,
                     spotify: args[i]
                 }
             })
-            
-            console.log(finalInfo);
+    
             finalInfo = finalInfo.filter(item => item.spotify.length > 0);
-
-            console.log(finalInfo);
-            
-            //this args represents the artist id
             myApp.displayOnScreen(finalInfo);
         })
 }
@@ -145,9 +129,7 @@ myApp.getArtistID = function(eventInfo) {
 
 //displays information on screen
 myApp.displayOnScreen = function(finalInfo) {
-    // console.log("display on te screen");
    
-
     $(".masterContainer").html("");
 
     finalInfo = finalInfo.map((item) => {
@@ -161,8 +143,7 @@ myApp.displayOnScreen = function(finalInfo) {
         }
     });
 
-    console.log(finalInfo)
-
+    //remove duplicates
     finalInfo = finalInfo.reduce(function (accumulator, current) {
         if (checkIfAlreadyExist(current)) {
             return accumulator
@@ -177,8 +158,7 @@ myApp.displayOnScreen = function(finalInfo) {
         }
     }, []);
 
-    console.log(finalInfo);
-
+    //appending artist information and spotify to the screen
     finalInfo.forEach((item) => {
         const playlist = item.uri;
         $(".masterContainer").append(`<div class='container container-${item.name}' id="card">
@@ -202,11 +182,10 @@ myApp.displayOnScreen = function(finalInfo) {
                                             <iframe class="tracks" src="https://open.spotify.com/embed?uri=${playlist}&amp;theme=white" width="100%" height="600" frameborder="0" allowtransparency="true"></iframe>
                                         </div>
                                     </div>`);
-        console.log(item);
-
     })
 }
 
+//smooth scroll with delay
 myApp.smoothScroll = function () {
     const scroll = setTimeout(function () {
         $('html, body').animate({
@@ -217,27 +196,23 @@ myApp.smoothScroll = function () {
 
 }  
  
-
+//retrieves user input information on submit
 myApp.formSubmit = function() {
     $("form").on("submit", function(e){
         e.preventDefault();
         $(".type-it").text("Processing...");
-        // myApp.typeIt(); 
         myApp.smoothScroll();
-        // myApp.fadeIn();
         
         let userLocation = $("input[type=text]").val();
-        // console.log(userLocation);
 
         let userStartDate = $(".userStartDate").val();
-        // console.log(userStartDate);
 
         let userEndDate = $(".userEndDate").val();
-        // console.log(userEndDate);
 
         myApp.getTicketMasterEvents(userLocation, userStartDate, userEndDate);
     });
 
+    //toggles the input container
     $(".arrowHolder").on("click", function(){
         $("form").slideToggle({
             duration: 500
@@ -247,19 +222,12 @@ myApp.formSubmit = function() {
     });
 }
 
-
+//document ready
 $(function (){
     myApp.formSubmit();
 })
 
 
-//get back all the events with thte tag of music
-
-//retrieve artists name and store in container on html
-
-//connect artist name, and search for artist ID on spotify
-
-//pull top songs from artist, and display for user
 
 
 

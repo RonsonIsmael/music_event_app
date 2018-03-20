@@ -5,13 +5,11 @@
     flex-direction: column;
     height: 100%;
     text-align: center;
-    // background: linear-gradient(rgba(255,255,255, 0.4), rgba(255,255,255, 0.2));
     h1, blockquote, form, .input-container {
         margin-bottom: 50px;
     }
 
     header {
-        // background: linear-gradient(rgba(255,255,255, 0.4), rgba(255,255,255, 0.2));
         padding-top:  50px;
     }
 
@@ -26,7 +24,6 @@
         .input-item {
             text-align: left;
             width: 200px;
-            // margin-right: 50px;
 
             label {
                 @include content();
@@ -88,18 +85,6 @@
 
 }
 
-// ::-webkit-input-placeholder {
-//     color:red;
-// }
-
-// ::-moz-placeholder {
-//     color:red;
-// }
-
-// ::-ms-placeholder {
-//     color:red;
-// }
-
 ::placeholder {
     color:rgb(144, 146, 150);
     text-transform: uppercase;
@@ -131,7 +116,6 @@
         justify-content: flex-start;
         align-items: flex-start;
         align-content: center;
-        // width: 200px;
         
 
         button {
