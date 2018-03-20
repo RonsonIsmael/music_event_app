@@ -1,8 +1,0 @@
-1) Create repository in organization
-2) Both people fork the repository
-3) Go to personal account and clone this repository (copy url and in command line git clone url)
-4) Create upstream branch of repository (master branch automatically created) by going to command line and doing git remote add upstream url
-5) Do regular git add, git commit, git push to the master branch
-6) Click the new pull request button on the github page
-7) Other person goes to the organization page and under pull requests can now accept the changes
-8) Other person needs to do git pull upstream master on the command line to get updated files

@@ -1,7 +1,6 @@
 $primary : rgba(255, 255, 255, 0);
 $accent: #73aeb0;
 $font-color: grey;
-// $card-color: rgba(200, 200, 200, 1);
 $card-color: hsla(216, 67%, 40%, 0.9);
 
 $sfont: 'Montserrat', sans-serif;
@@ -40,16 +39,12 @@ body {
     width: 80%;
     margin: 0 auto;
     background-color: $primary;
-    // height: 100vh;
 }
 
 img {
     width: 100%;
     height: 100%; 
-    // border-radius: 150px;
-    margin-bottom: 30px;
-//     margin: 0 auto;
-// 
+    margin-bottom: 30px; 
 }
 
 .fa-arrow-circle-down,
